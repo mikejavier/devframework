@@ -2,7 +2,7 @@
 
 module.exports = function( grunt ) {
 	// Definição dos arquivos js
-	var filesJS = ['bower_components/jquery/dist/jquery.js','bower_components/modernizr/modernizr.js', 'bower_components/owl-carousel/owl-carousel/owl.carousel.js','src/js/**/*'];
+	var filesJS = ['bower_components/jquery/../dist/jquery.js','bower_components/modernizr/modernizr.js', 'bower_components/owl-carousel/owl-carousel/owl.carousel.js','src/js/**/*'];
 	// Definição dos arquivos css
 	var fileCSS = ['bower_components/normalize-css/normalize.css', 'bower_components/owl-carousel/owl-carousel/owl.carousel.css', 'src/css/main.css'];
 
@@ -47,13 +47,13 @@ module.exports = function( grunt ) {
 			css: {
 				src: fileCSS,
 				
-				dest: 'dist/css/styles.combined.min.css'
+				dest: '../dist/css/styles.combined.min.css'
 			},
 
 			js: {
 				src: filesJS,
 
-				dest: 'dist/js/scripts.combined.min.js'
+				dest: '../dist/js/scripts.combined.min.js'
 			}
 		},
 
@@ -65,7 +65,7 @@ module.exports = function( grunt ) {
 			
 			dist: {
 				files: {
-					'dist/js/scripts.combined.min.js': filesJS
+					'../dist/js/scripts.combined.min.js': filesJS
 				}
 			}
 		},
@@ -74,9 +74,9 @@ module.exports = function( grunt ) {
 		  target: {
 		    files: [{
 		      expand: true,
-		      cwd: 'dist/css',
+		      cwd: '../dist/css',
 		      src: ['*.css'],
-		      dest: 'dist/css',
+		      dest: '../dist/css',
 		      ext: '.combined.min.css'
 		    }]
 		  }
@@ -89,7 +89,7 @@ module.exports = function( grunt ) {
 		        	expand: true,
 		        	cwd: 'src/images',
 		        	src: ['**/*.{png,jpg,gif}'],
-		        	dest: 'dist/images'
+		        	dest: '../dist/images'
 		    	}]
 		    }
 		},
@@ -97,7 +97,7 @@ module.exports = function( grunt ) {
 		cmq: {
 			target:{
 		      files: {
-		        'dist/css': ['dist/css/*.css']
+		        '../dist/css': ['../dist/css/*.css']
 		      }
 		    }	  
 	    },
@@ -107,9 +107,9 @@ module.exports = function( grunt ) {
 
                 // Aplicando o recurso de Live Reload nos seguintes arquivos
                 src : [
-                	'dist/css/styles.combined.min.css',
-                	'**/*.html',
-                	'**/*.php'
+                	'../dist/css/styles.combined.min.css',
+                	'../**/*.html',
+                	'../**/*.php'
                 ]
 
             },
