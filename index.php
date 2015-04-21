@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="dist/css/styles.combined.min.css">
 
         <!-- HUMANS -->
-        <link type="text/plain" rel="author" href="http://www.dominio.com.br/humans.txt" />
+        <link type="text/plain" rel="author" href="humans.txt" />
 
         <!-- OPEN GRAPH -->
         <meta property='og:title' content='Título do site' />
@@ -49,6 +49,5 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
-        <!-- script de desenvolvimento do plugin grunt de browser sync -->
     </body>
 </html>
