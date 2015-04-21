@@ -1,0 +1,47 @@
+@import "base.scss";
+
+.btn{
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid #ddd;
+	white-space: nowrap;
+	color: #333;
+	padding: 10px;
+	margin: 10px;
+	@include borderRadius(3px);
+
+	&:hover{
+		background-color: #E6E6E6;
+	}
+
+}
+
+.btn-primario{
+	@extend .btn;
+	background-color: #428bca;
+    border-color: #357ebd;
+    color: #fff;
+
+    &:hover{
+		background-color: #3071A9;
+    }
+}
+
+.link{
+	display: inline-block;
+	cursor: pointer;
+	white-space: nowrap;
+	color: #333;
+	margin: 10px;
+
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+.link-danger{
+	@extend .link;
+	color: #a94442;
+}

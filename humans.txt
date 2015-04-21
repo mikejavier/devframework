@@ -1,0 +1,24 @@
+/* SITE */
+
+  Last update: 11/07/2011
+  Language: Brazilian Portuguese (PT-BR)
+  Doctype: HTML5
+
+/* TEAM */
+
+  Front-End: Michael Santillán
+  Twitter: @zmiike
+  Web: www.michaelsantillan.com
+
+/* SPECIAL THANKS */
+
+  role: name
+  Twitter: 
+
+/* TECHNOLOGY, FRAMAWORKS, SOFTWARES */
+
+   HTML5, CSS3, JAVASCRIPT
+   Normalize.css, jQuery, Modernizr, Html5Boilerplate, Jeet
+   Sublime Text 3, Photoshop, Grunt, Bower
+
+# And, of course, all humanstxt.org team!

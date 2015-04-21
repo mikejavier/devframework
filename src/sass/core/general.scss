@@ -1,0 +1,24 @@
+@import "../base.scss";
+
+*,*:before,*:after{
+	@include boxSizing;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #fff;
+	font-family: $font;
+	font-size: $font-size-base;
+}
+
+img{
+	max-width: 100%;
+}
+
+.wrap{
+	@include center();
+}
+
