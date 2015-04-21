@@ -118,6 +118,7 @@ module.exports = function( grunt ) {
 
                 // Integrando com a tarefa "watch"
                 watchTask: true,
+                proxy: "localhost:8888/devframework",
 
                 // Sincronizando os eventos entre os dispositívos
                 ghostMode: {
