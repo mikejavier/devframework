@@ -4,7 +4,7 @@ module.exports = function( grunt ) {
 	// Definição dos arquivos js
 	var filesJS = ['bower_components/jquery/../dist/jquery.js','bower_components/modernizr/modernizr.js', 'bower_components/owl-carousel/owl-carousel/owl.carousel.js','src/js/**/*'];
 	// Definição dos arquivos css
-	var fileCSS = ['bower_components/normalize-css/normalize.css', 'bower_components/owl-carousel/owl-carousel/owl.carousel.css', 'src/css/main.css'];
+	var fileCSS = ['bower_components/normalize-css/normalize.css', 'bower_components/owl-carousel/owl-carousel/owl.carousel.css', 'src/css/sprite/sprite.css','src/css/main.css'];
 
 	// Load all tasks
 	require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
@@ -14,7 +14,7 @@ module.exports = function( grunt ) {
 		watch: {		
 			css: {
 				files: [ 'src/sass/**/*' ],
-				tasks: [ 'compass:src', 'concat:css' ]
+				tasks: [ 'sass', 'concat:css' ]
 			},
 
 			js: {
@@ -23,24 +23,17 @@ module.exports = function( grunt ) {
 			}
 		},
 
-		// Compass scss
-		compass: {
-			src: {
-				options: {
-					force: true,
-					config: 'config.rb'
-				}
-			},
-
-			dist: {
-				options: {
-					force: true,
-					config: 'config.rb',
-					outputStyle: 'compressed',
-					relativeAssets: true
-				}
-			}
-		},
+		//SASS para CSS
+	    sass: {
+	        options: {
+	            sourceMap: true
+	        },
+	        dist: {
+	            files: {
+	                'src/css/main.css': 'src/sass/main.scss'
+	            }
+	        }
+	    },
 
 		// Concateção dos arquivos CSS e JS
 		concat: {
@@ -70,6 +63,7 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		// Minificação do arquivo CSS
 		cssmin: {
 		  target: {
 		    files: [{
@@ -94,6 +88,7 @@ module.exports = function( grunt ) {
 		    }
 		},
 
+		//Combiinação de medias queries
 		cmq: {
 			target:{
 		      files: {
@@ -102,6 +97,7 @@ module.exports = function( grunt ) {
 		    }	  
 	    },
 
+	    //browserSync
 		browserSync: {
             files: {
 
@@ -130,6 +126,7 @@ module.exports = function( grunt ) {
             }
         },
 
+        // Atualiza os plugins do grunt
         devUpdate: {
 	        main: {
 	            options: {
@@ -144,12 +141,30 @@ module.exports = function( grunt ) {
 	                reportOnlyPkgs: [] //use updateType action on all packages 
 	            }
 	        }
-	    }
+	    },
+
+	    // Sprite
+		cssSprite: {
+			options: {
+				'cssPath': '../img',
+				'processor': 'css',
+				'orientation': 'vertical',
+				'margin': 4
+			},
+			sprite: {
+				options: {
+				  'style': 'src/css/sprite/sprite.css'
+				},
+				src: 'src/images/*',
+				dest: '../dist/images/sprite.png'
+			}
+		}
 	});
 
 	// registrando tarefa default
 	grunt.registerTask( 'default', [ 'browserSync', 'watch' ] );
 	grunt.registerTask( 'img', [ 'imagemin' ] );
+	grunt.registerTask( 'sprite', [ 'cssSprite' ] );
 	grunt.registerTask( 'css', [ 'cssmin' ] );
 	grunt.registerTask( 'mq', [ 'cmq' ] );
 	grunt.registerTask( 'update', [ 'devUpdate' ] );
