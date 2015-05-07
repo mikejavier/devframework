@@ -1,11 +1,17 @@
 // images
-$img-path: '../../src/images/';
+$img-path: '../../dist/images/';
 
 // colors
-$color-light: #aac54b;
+$color-light: #0088CC;
 $color-dark: #292c2e;
+
 $color-white: #fff;
-$color-grey: #9f9f9f;
+$color-black: #000;
+
+$color-grey: #9E9E9E;
+$color-grey-dark: #424242;
+$color-grey-light: #DDD;
+
 
 // font
 $font: 'Open Sans', 'sans-serif';
@@ -21,4 +27,7 @@ $padding-base:1rem;
 $bp-phone: max-width 480px;
 $bp-tablet: 967px;
 $bp-desktop: 1024px;
+
+//Border
+$border-radius-base:4px;
 
