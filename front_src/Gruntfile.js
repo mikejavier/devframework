@@ -20,6 +20,11 @@ module.exports = function( grunt ) {
 			js: {
 				files: 'src/js/**/*',
 				tasks: [ 'concat:js' ]
+			},
+
+			jade: {
+				files: 'views/**/*',
+				tasks: [ 'jade' ]
 			}
 		},
 
@@ -32,6 +37,29 @@ module.exports = function( grunt ) {
 	            files: {
 	                'src/css/main.css': 'src/sass/main.scss'
 	            }
+	        }
+	    },
+
+	    jade: {
+	        compile: {
+	            options: {
+	                client: false,
+	                pretty: true
+	            },
+	            // Create a singles pages  
+	            files: [ {
+	              cwd: "views/",
+	              src: "**/*.jade",
+	              dest: "../",
+	              expand: true,
+	              ext: ".html"
+	            } ]
+            	/*
+            	= Create a templates =
+	            files: {
+			      "path/to/dest.html": "path/to/templates/*.jade"
+			    }
+			    */
 	        }
 	    },
 
@@ -80,7 +108,7 @@ module.exports = function( grunt ) {
 		    dynamic: {
 		    	files: [{
 		        	expand: true,
-		        	cwd: 'src/images',
+		        	cwd: '../dist/images',
 		        	src: ['**/*.{png,jpg,gif}'],
 		        	dest: '../dist/images'
 		    	}]
@@ -124,6 +152,22 @@ module.exports = function( grunt ) {
             }
         },
 
+		sprity: {
+			options: {
+				'cssPath': '../images',
+				'processor': 'css',
+				'orientation': 'vertical',
+				'margin': 4
+			},
+			sprite: {
+				options: {
+					'style': 'src/css/sprite/sprite.css'  
+				},
+				src: 'src/images/*',
+				dest: '../dist/images/sprite',
+			}
+	    },
+
         devUpdate: {
 	        main: {
 	            options: {
@@ -147,6 +191,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'img', [ 'imagemin' ] );
 	grunt.registerTask( 'css', [ 'cssmin' ] );
 	grunt.registerTask( 'mq', [ 'cmq' ] );
+	grunt.registerTask( 'sprite', [ 'sprity' ] );
 	grunt.registerTask( 'update', [ 'devUpdate' ] );
 	grunt.registerTask( 'dist', [ 'uglify:dist', 'concat:css', 'cmq', 'cssmin', 'imagemin' ] );
 };
