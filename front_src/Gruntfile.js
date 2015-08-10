@@ -4,10 +4,12 @@ module.exports = function( grunt ) {
 	// Definição dos arquivos js
 	var filesJS = ['bower_components/modernizr/modernizr.js', 'bower_components/waves/src/js/waves.js','src/js/**/*'];
 	// Definição dos arquivos css
-	var fileCSS = ['bower_components/normalize-css/normalize.css', 'src/css/main.css'];
+	var fileCSS = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main.css'];
 
 	// Load all tasks
-	require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+	require('time-grunt')(grunt);
+	require('jit-grunt')(grunt);
+	//require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
 	grunt.initConfig({
 		// Watch
@@ -108,7 +110,7 @@ module.exports = function( grunt ) {
 		    dynamic: {
 		    	files: [{
 		        	expand: true,
-		        	cwd: '../dist/images',
+		        	cwd: 'src/images',
 		        	src: ['**/*.{png,jpg,gif}'],
 		        	dest: '../dist/images'
 		    	}]
@@ -154,17 +156,18 @@ module.exports = function( grunt ) {
 
 		sprity: {
 			options: {
-				'cssPath': '../images',
-				'processor': 'css',
-				'orientation': 'vertical',
-				'margin': 4
+			'cssPath': '../images',
+			'processor': 'css',
+			'orientation': 'vertical',
+			'margin': 4,
+			'prefix':'sprite'
 			},
 			sprite: {
 				options: {
-					'style': 'src/css/sprite/sprite.css'  
+				  'style': '../css/sprite/sprite.css'
 				},
-				src: 'src/images/*',
-				dest: '../dist/images/sprite',
+				src: 'src/images/sprite/*',
+				dest: 'src/images/sprite',
 			}
 	    },
 
@@ -187,11 +190,10 @@ module.exports = function( grunt ) {
 
 	// registrando tarefa default
 	grunt.registerTask( 'default', [ 'browserSync', 'watch' ] );
-	grunt.registerTask( 'mike', [ 'sass', 'concat:css' ] );
-	grunt.registerTask( 'img', [ 'imagemin' ] );
+	grunt.registerTask( 'img', [ 'sprity', 'imagemin' ] );
+	grunt.registerTask( 'sprite', [ 'sprity' ] );
 	grunt.registerTask( 'css', [ 'cssmin' ] );
 	grunt.registerTask( 'mq', [ 'cmq' ] );
-	grunt.registerTask( 'sprite', [ 'sprity' ] );
 	grunt.registerTask( 'update', [ 'devUpdate' ] );
 	grunt.registerTask( 'dist', [ 'uglify:dist', 'concat:css', 'cmq', 'cssmin', 'imagemin' ] );
 };

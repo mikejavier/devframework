@@ -16,7 +16,8 @@
     "grunt-dev-update": "^1.1.0",
     "grunt-sass": "^0.18.1",
     "grunt-sprity": "^1.0.0",
-    "grunt-yslow": "0.0.4",
-    "matchdep": "^0.3.0"
+    "jit-grunt": "^0.9.1",
+    "matchdep": "^0.3.0",
+    "time-grunt": "^1.2.1"
   }
 }
