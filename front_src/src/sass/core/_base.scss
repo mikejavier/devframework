@@ -9,8 +9,9 @@
 // VARIABLES AND MIXINS
 @import "variables.scss";
 @import "mixins.scss";
+@import "../../../bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";
 
-// VENDOR
+// ADD-ONS
 @import "../../../bower_components/material-shadows/material-shadows.scss";
 
 
