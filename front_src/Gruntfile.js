@@ -8,8 +8,9 @@ module.exports = function( grunt ) {
 
 	// Load all tasks
 	require('time-grunt')(grunt);
-	require('jit-grunt')(grunt);
-	//require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
+	require('jit-grunt')(grunt,{
++		cmq: 'grunt-combine-media-queries'	
++	});
 
 	grunt.initConfig({
 		// Watch
