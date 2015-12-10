@@ -18,15 +18,12 @@
     "tests"
   ],
   "devDependencies": {
-    "jquery": "~2.1.1",
-    "normalize-css": "~3.0.1",
-    "modernizr": "~2.8.3",
-    "outdated-browser": "https://github.com/burocratik/outdated-browser.git#~1.1.0",
+    "bourbon": "~4.2.6",
     "breakpoint-sass": "~2.5.0",
-    "waves": "~0.7.1",
-    "material-shadows": "~2.0.1",
-    "jeet.gs": "~6.1.2",
+    "jquery": "~2.1.1",
+    "modernizr": "~2.8.3",
+    "normalize-css": "~3.0.1",
+    "outdated-browser": "https://github.com/burocratik/outdated-browser.git#~1.1.0",
     "sassy-maps": "~0.4.0",
-    "bourbon": "~4.2.6"
   }
 }

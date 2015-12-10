@@ -9,15 +9,15 @@ module.exports = function( grunt ) {
 	// Load all tasks
 	require('time-grunt')(grunt);
 	require('jit-grunt')(grunt,{
-+		cmq: 'grunt-combine-media-queries'	
-+	});
+		cmq: 'grunt-combine-media-queries'	
+	});
 
 	grunt.initConfig({
 		// Watch
 		watch: {		
 			css: {
 				files: [ 'src/sass/**/*' ],
-				tasks: [ 'sass', 'concat:css' ]
+				tasks: [ 'sass', 'concat:css', 'postcss' ]
 			},
 
 			js: {
@@ -30,6 +30,22 @@ module.exports = function( grunt ) {
 				tasks: [ 'jade' ]
 			}
 		},
+
+		postcss: {
+	      options: {
+	        map: true,
+	        processors: [
+	        	require('postcss-responsive-type')(),
+          		require('autoprefixer')({browsers: ['last 2 versions']}),
+        		require('pixrem')({rootValue:10, html:false}),
+        		require('lost')
+	        ]
+	      },
+	      dist: {
+	        src: '../dist/css/styles.combined.min.css',
+	        dest: '../dist/css/styles.combined.min.css'
+	      }
+	    },
 
 		//SASS para CSS
 	    sass: {
