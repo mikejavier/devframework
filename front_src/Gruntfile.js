@@ -4,20 +4,26 @@ module.exports = function( grunt ) {
 	// Definição dos arquivos js
 	var filesJS = ['bower_components/modernizr/modernizr.js', 'bower_components/waves/src/js/waves.js','src/js/**/*'];
 	// Definição dos arquivos css
-	var fileCSS = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main.css'];
+	var sassconcat = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main_sass.css'];
+	var postcssconcat = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main_postcss.css'];
 
 	// Load all tasks
 	require('time-grunt')(grunt);
 	require('jit-grunt')(grunt,{
-		cmq: 'grunt-combine-media-queries'	
+		cmq: 'grunt-combine-media-queries',
 	});
 
 	grunt.initConfig({
 		// Watch
 		watch: {		
-			css: {
+			precss: {
 				files: [ 'src/sass/**/*' ],
-				tasks: [ 'sass', 'concat:css', 'postcss' ]
+				tasks: [ 'sass', 'concat:sass' ]
+			},
+
+			postcss: {
+				files: [ 'src/postcss/**/*.css' ],
+				tasks: [ 'postcss', 'concat:postcss' ]
 			},
 
 			js: {
@@ -34,7 +40,9 @@ module.exports = function( grunt ) {
 		postcss: {
 	      options: {
 	        map: true,
+	        parser: require('postcss-scss'),
 	        processors: [
+	        	require('precss'),
 	        	require('postcss-responsive-type')(),
           		require('autoprefixer')({browsers: ['last 2 versions']}),
         		require('pixrem')({rootValue:10, html:false}),
@@ -42,19 +50,18 @@ module.exports = function( grunt ) {
 	        ]
 	      },
 	      dist: {
-	        src: '../dist/css/styles.combined.min.css',
-	        dest: '../dist/css/styles.combined.min.css'
+	        src: 'src/postcss/main.css',
+	        dest: 'src/css/main_postcss.css'
 	      }
 	    },
 
-		//SASS para CSS
 	    sass: {
 	        options: {
 	            sourceMap: true
 	        },
 	        dist: {
 	            files: {
-	                'src/css/main.css': 'src/sass/main.scss'
+	                'src/css/main_sass.css': 'src/sass/main.scss'
 	            }
 	        }
 	    },
@@ -84,8 +91,14 @@ module.exports = function( grunt ) {
 
 		// Concateção dos arquivos CSS e JS
 		concat: {
-			css: {
-				src: fileCSS,
+			sass: {
+				src: sassconcat,
+				
+				dest: '../dist/css/styles.combined.min.css'
+			},
+
+			postcss: {
+				src: postcssconcat,
 				
 				dest: '../dist/css/styles.combined.min.css'
 			},
@@ -207,10 +220,7 @@ module.exports = function( grunt ) {
 
 	// registrando tarefa default
 	grunt.registerTask( 'default', [ 'browserSync', 'watch' ] );
+	grunt.registerTask( 'dist', [ 'uglify:dist', 'cmq', 'cssmin', 'imagemin' ] );
 	grunt.registerTask( 'img', [ 'sprity', 'imagemin' ] );
-	grunt.registerTask( 'sprite', [ 'sprity' ] );
-	grunt.registerTask( 'css', [ 'cssmin' ] );
-	grunt.registerTask( 'mq', [ 'cmq' ] );
 	grunt.registerTask( 'update', [ 'devUpdate' ] );
-	grunt.registerTask( 'dist', [ 'uglify:dist', 'concat:css', 'cmq', 'cssmin', 'imagemin' ] );
 };

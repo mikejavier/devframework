@@ -1,5 +1,5 @@
 *,*:before,*:after{
-	
+	@include boxSizing;
 }
 
 html, body {
@@ -32,25 +32,29 @@ img{
 section{
 	background-color: $color-white;
 	margin-bottom: $margin-base*2;
-
+	@include z-depth(1);
 }
 
 .wrap{
-	
-	
+	@include cf;
+	@include center(1280px);
 	padding: $padding-base;
 }
 
 .list{
-	@extend %ul;
-	
+	@include cf;
+	@extend teste;
+}
+
+.mike{
+	@extend teste;
 }
 
 .section-title{
 	display: block;
 	width: 100%;
 	margin: $margin-base*2 0;
-	
+	@include cf;
 
 	h1{
 		display: inline-block;
