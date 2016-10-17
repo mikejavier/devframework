@@ -2,7 +2,7 @@
 
 module.exports = function( grunt ) {
 	// Definição dos arquivos js
-	var filesJS = ['bower_components/modernizr/modernizr.js', 'bower_components/waves/src/js/waves.js','src/js/**/*'];
+	var filesJS = ['src/js/main.js'];
 	// Definição dos arquivos css
 	var sassconcat = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main_sass.css'];
 	var postcssconcat = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main_postcss.css'];
@@ -15,7 +15,7 @@ module.exports = function( grunt ) {
 
 	grunt.initConfig({
 		// Watch
-		watch: {		
+		watch: {
 			precss: {
 				files: [ 'src/sass/**/*' ],
 				tasks: [ 'sass', 'concat:sass' ]
@@ -28,7 +28,7 @@ module.exports = function( grunt ) {
 
 			js: {
 				files: 'src/js/**/*',
-				tasks: [ 'concat:js' ]
+				tasks: [ 'browserify', 'concat:js' ]
 			},
 
 			jade: {
@@ -72,7 +72,7 @@ module.exports = function( grunt ) {
 	                client: false,
 	                pretty: true
 	            },
-	            // Create a singles pages  
+	            // Create a singles pages
 	            files: [ {
 	              cwd: "views/",
 	              src: "**/*.jade",
@@ -93,13 +93,13 @@ module.exports = function( grunt ) {
 		concat: {
 			sass: {
 				src: sassconcat,
-				
+
 				dest: '../dist/css/styles.combined.min.css'
 			},
 
 			postcss: {
 				src: postcssconcat,
-				
+
 				dest: '../dist/css/styles.combined.min.css'
 			},
 
@@ -115,7 +115,7 @@ module.exports = function( grunt ) {
 			options: {
 				mangle: false
 			},
-			
+
 			dist: {
 				files: {
 					'../dist/js/scripts.combined.min.js': filesJS
@@ -152,7 +152,7 @@ module.exports = function( grunt ) {
 		      files: {
 		        '../dist/css': ['../dist/css/*.css']
 		      }
-		    }	  
+		    }
 	    },
 
 		browserSync: {
@@ -204,18 +204,28 @@ module.exports = function( grunt ) {
         devUpdate: {
 	        main: {
 	            options: {
-	                updateType: 'force', //just report outdated packages 
-	                reportUpdated: false, //don't report up-to-date packages 
-	                semver: false, //stay within semver when updating 
+	                updateType: 'force', //just report outdated packages
+	                reportUpdated: false, //don't report up-to-date packages
+	                semver: false, //stay within semver when updating
 	                packages: {
-	                    devDependencies: true, //only check for devDependencies 
+	                    devDependencies: true, //only check for devDependencies
 	                    dependencies: false
 	                },
-	                packageJson: null, //use matchdep default findup to locate package.json 
-	                reportOnlyPkgs: [] //use updateType action on all packages 
+	                packageJson: null, //use matchdep default findup to locate package.json
+	                reportOnlyPkgs: [] //use updateType action on all packages
 	            }
 	        }
-	    }
+	    },
+        browserify: {
+            dist: {
+                files: {
+                  'src/js/main.js': ['src/js/app.js']
+                },
+                options: {
+                     'transform': [ ['babelify', { 'presets': ['es2015'] }] ]
+                }
+            }
+        }
 	});
 
 	// registrando tarefa default
