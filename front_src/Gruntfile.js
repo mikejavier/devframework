@@ -1,11 +1,12 @@
 "use strict";
 
 module.exports = function( grunt ) {
+
 	// Definição dos arquivos js
 	var filesJS = ['src/js/main.js'];
+
 	// Definição dos arquivos css
-	var sassconcat = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main_sass.css'];
-	var postcssconcat = ['bower_components/normalize-css/normalize.css', 'src/css/sprite/sprite.css','src/css/main_postcss.css'];
+	var sassconcat = ['node_modules/normalize.css/normalize.css', 'src/tmp/css/sprite/sprite.css', 'src/tmp/css/main_sass.css'];
 
 	// Load all tasks
 	require('time-grunt')(grunt);
@@ -21,14 +22,9 @@ module.exports = function( grunt ) {
 				tasks: [ 'sass', 'concat:sass' ]
 			},
 
-			postcss: {
-				files: [ 'src/postcss/**/*.css' ],
-				tasks: [ 'postcss', 'concat:postcss' ]
-			},
-
 			js: {
 				files: 'src/js/**/*',
-				tasks: [ 'browserify', 'concat:js' ]
+				tasks: [ 'browserify']
 			},
 
 			jade: {
@@ -37,31 +33,13 @@ module.exports = function( grunt ) {
 			}
 		},
 
-		postcss: {
-	      options: {
-	        map: true,
-	        parser: require('postcss-scss'),
-	        processors: [
-	        	require('precss'),
-	        	require('postcss-responsive-type')(),
-          		require('autoprefixer')({browsers: ['last 2 versions']}),
-        		require('pixrem')({rootValue:10, html:false}),
-        		require('lost')
-	        ]
-	      },
-	      dist: {
-	        src: 'src/postcss/main.css',
-	        dest: 'src/css/main_postcss.css'
-	      }
-	    },
-
 	    sass: {
 	        options: {
 	            sourceMap: true
 	        },
 	        dist: {
 	            files: {
-	                'src/css/main_sass.css': 'src/sass/main.scss'
+	                'src/tmp/css/main_sass.css': 'src/css/main.scss'
 	            }
 	        }
 	    },
@@ -97,12 +75,6 @@ module.exports = function( grunt ) {
 				dest: '../dist/css/styles.combined.min.css'
 			},
 
-			postcss: {
-				src: postcssconcat,
-
-				dest: '../dist/css/styles.combined.min.css'
-			},
-
 			js: {
 				src: filesJS,
 
@@ -118,7 +90,7 @@ module.exports = function( grunt ) {
 
 			dist: {
 				files: {
-					'../dist/js/scripts.combined.min.js': filesJS
+					'../dist/js/scripts.combined.min.js': '../dist/js/scripts.combined.min.js'
 				}
 			}
 		},
@@ -194,7 +166,7 @@ module.exports = function( grunt ) {
 			},
 			sprite: {
 				options: {
-				  'style': '../css/sprite/sprite.css'
+				  'style': '../tmp/css/sprite/sprite.css'
 				},
 				src: 'src/images/sprite/*',
 				dest: 'src/images/sprite',
@@ -219,7 +191,7 @@ module.exports = function( grunt ) {
         browserify: {
             dist: {
                 files: {
-                  'src/js/main.js': ['src/js/app.js']
+                  'src/js/main.js': filesJS
                 },
                 options: {
                      'transform': [ ['babelify', { 'presets': ['es2015'] }] ]
