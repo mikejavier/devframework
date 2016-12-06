@@ -1,13 +1,65 @@
+@lost flexbox flex;   //Enable flexbox option
+
+// Include variables of project
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
 @import "variables";
 
+// Set box-sizing globally to border-box
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+*,
+*:before,
+*:after{
+	box-sizing: border-box;
+}
+
+// The base font-size is set at 62.5% for having the convenience
+// of sizing rems in a way that is similar to using px: 1.6rem = 16px
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+html{
+	font-size: 62.5%;
+	height: 100%;
+	// lost-utility:edit; //mixin for highlight elements
+}
+
+// Default body styles
+body {
+	height: 100%;
+	background-color: #DFDFDF;
+	font-family: $font;
+	font-size: $font-size-base;
+	line-height: 1.6;
+	color: #000;
+}
+
+// Link
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+a{
+	text-decoration: none;
+	color: #000;
+
+	&:focus,
+	&:hover{
+		color: #000;
+	}
+}
+
+// Image
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+img{
+	max-width: 100%;
+}
 
 
 
 
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+		/* INSERT HERE THE EXTEND CLASS */
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
 
-/* INSERT HERE THE EXTEND CLASS */
 
-@define-extend teste{
+// mixin for remove default style of ul,ol or other
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+@define-extend nolist{
 	list-style: none;
 	padding: 0;
 	margin: 0;

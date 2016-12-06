@@ -1,5 +1,5 @@
 // images
-$img-path: '../../dist/images/';
+$img-path: ../../dist/images/;
 
 // colors
 $color-light: #0088CC;
@@ -15,7 +15,7 @@ $color-grey-light: #DDD;
 
 // font
 $font: 'Open Sans', 'sans-serif';
-$font-size-base: 10px;
+$font-size-base: 1.6rem;
 $font-size: 1rem;
 $font-line-height:1.2;
 
