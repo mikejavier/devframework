@@ -28,9 +28,9 @@ module.exports = function( grunt ) {
 				tasks: ['browserify']
 			},
 
-			jade: {
+			pug: {
 				files: 'views/**/*',
-				tasks: [ 'jade' ]
+				tasks: [ 'pug' ]
 			}
 		},
 
@@ -57,7 +57,7 @@ module.exports = function( grunt ) {
 			}
 		},
 
-		jade: {
+		pug: {
 			compile: {
 				options: {
 					client: false,
@@ -66,7 +66,7 @@ module.exports = function( grunt ) {
 				// Create a singles pages
 				files: [ {
 					cwd: 'views/',
-					src: '**/*.jade',
+					src: '**/*.pug',
 					dest: '../',
 					expand: true,
 					ext: '.html'
