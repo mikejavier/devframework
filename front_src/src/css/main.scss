@@ -1,37 +1,37 @@
-@import "core/base.scss";
+//import jeet grid system
+@import '../../node_modules/jeet/scss/index';
 
-// Reset and dependencies
-// @import "core/fonts.scss";
-// @import "core/general.scss";
+*,*:before,*:after{
+    box-sizing: border-box;
+}
 
-// Components
-// @import "components/progress-bar.scss";
-// @import "components/cards.scss";
-// @import "components/waves.scss";
-// @import "components/tooltip.scss";
-// @import "components/buttons.scss";
-// @import "components/timeline.scss";
-// @import "components/articles.scss";
-// @import "components/dropdown.scss";
-// @import "components/labels.scss";
-// @import "components/paginator.scss";
-// @import "components/tabela.scss";
-// @import "components/sprite-generator.scss";
-// @import "components/utilidades.scss";
+html{
+    height: 100%;
+    font-size: 62.5%;
+}
 
-// Templates
-// @import "templates/header.scss";
-// @import "templates/sidebar.scss";
-// @import "templates/footer.scss";
+body {
+    height: 100%;
+    font-size: 1.6rem;
+}
 
-// // Pages
-// @import "pages/home.scss";
+img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
+//exemple of use a Jeet grid system
+// .test{
+//  background-color: #000;
+//  width: 100%;
+//  @include clearfix();
 
+//  &__item{
+//      background-color: #f00;
+//      height: 100px;
 
+//      @include column(1/3);
 
-
-
-
-
-
+//  }
+// }
