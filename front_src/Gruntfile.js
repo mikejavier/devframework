@@ -6,7 +6,7 @@ module.exports = function( grunt ) {
 	var filesJS = ['src/tmp/js/main.js']
 
 	// Definição dos arquivos css
-	var postcssconcat = ['node_modules/normalize.css/normalize.css', 'src/tmp/css/sprite/sprite.css','src/tmp/css/main_postcss.css']
+	var postcssconcat = ['node_modules/normalize.css/normalize.css', 'src/tmp/css/main_postcss.css']
 
 	// Load all tasks
 	require('time-grunt')(grunt)
