@@ -170,23 +170,6 @@ module.exports = function( grunt ) {
 			}
 		},
 
-		sprity: {
-			options: {
-				'cssPath': '../images',
-				'processor': 'css',
-				'orientation': 'vertical',
-				'margin': 4,
-				'prefix':'sprite'
-			},
-			sprite: {
-				options: {
-					'style': '../tmp/css/sprite/sprite.css'
-				},
-				src: 'src/images/sprite/*',
-				dest: 'src/images/sprite',
-			}
-		},
-
 		devUpdate: {
 			main: {
 				options: {
@@ -223,6 +206,6 @@ module.exports = function( grunt ) {
 	// registrando tarefa default
 	grunt.registerTask( 'default', [ 'browserSync', 'browserify', 'watch' ] )
 	grunt.registerTask( 'dist', [ 'uglify:dist', 'cmq', 'cssmin', 'imagemin' ] )
-	grunt.registerTask( 'img', [ 'sprity', 'imagemin' ] )
+	grunt.registerTask( 'img', [ 'imagemin' ] )
 	grunt.registerTask( 'update', [ 'devUpdate' ] )
 }

@@ -21,7 +21,6 @@
     "grunt-dev-update": "^1.1.0",
     "grunt-eslint": "^19.0.0",
     "grunt-postcss": "^0.7.1",
-    "grunt-sprity": "^1.0.0",
     "jit-grunt": "^0.9.1",
     "lost": "^6.6.2",
     "mdcss": "^1.5.3",
