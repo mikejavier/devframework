@@ -3,7 +3,7 @@
 module.exports = function( grunt ) {
 
 	// Definição dos arquivos js
-	var filesJS = ['src/js/main.js']
+	var filesJS = ['src/tmp/js/main.js']
 
 	// Definição dos arquivos css
 	var postcssconcat = ['node_modules/normalize.css/normalize.css', 'src/tmp/css/sprite/sprite.css','src/tmp/css/main_postcss.css']
@@ -24,8 +24,8 @@ module.exports = function( grunt ) {
 			},
 
 			js: {
-				files: 'src/js/**/*',
-				tasks: ['browserify']
+				files: 'src/tmp/js/main.js',
+				tasks: ['concat:js']
 			},
 
 			pug: {
@@ -206,17 +206,22 @@ module.exports = function( grunt ) {
 		browserify: {
 			dist: {
 				files: {
-					'../dist/js/scripts.combined.min.js': filesJS
+					'src/tmp/js/main.js': 'src/js/main.js'
 				},
 				options: {
-					'transform': [ ['babelify', { 'presets': ['es2015'] }] ]
+					transform: [ ['babelify', { 'presets': ['es2015'] }] ],
+					watch : true, // use watchify for incremental builds!
+					//keepAlive : true, // watchify will exit unless task is kept alive
+					browserifyOptions : {
+						debug : true // source mapping
+					}
 				}
 			}
 		}
 	})
 
 	// registrando tarefa default
-	grunt.registerTask( 'default', [ 'browserSync', 'watch' ] )
+	grunt.registerTask( 'default', [ 'browserSync', 'browserify', 'watch' ] )
 	grunt.registerTask( 'dist', [ 'uglify:dist', 'cmq', 'cssmin', 'imagemin' ] )
 	grunt.registerTask( 'img', [ 'sprity', 'imagemin' ] )
 	grunt.registerTask( 'update', [ 'devUpdate' ] )
