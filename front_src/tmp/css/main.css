@@ -1,0 +1,72 @@
+/* RESET AND DEPENDENCIES */
+*,
+*:before,
+*:after {
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%;
+  height: 100%; }
+
+body {
+  height: 100%;
+  background-color: #DFDFDF;
+  font-family: "Open Sans", "sans-serif";
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #000; }
+
+a {
+  text-decoration: none;
+  color: #000; }
+  a:focus, a:hover {
+    color: #000; }
+
+img {
+  max-width: 100%; }
+
+/* INSERT HERE THE EXTEND CLASS */
+@define-extend nolist {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+@font-face {
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-Light.ttf);
+  font-weight: 300; }
+
+@font-face {
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-Regular.ttf);
+  font-weight: 400; }
+
+@font-face {
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-Semibold.ttf);
+  font-weight: 600; }
+
+@font-face {
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-Bold.ttf);
+  font-weight: 700; }
+
+@font-face {
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-ExtraBold.ttf);
+  font-weight: 800; }
+
+.wrap {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 2rem; }
+
+/* COMPONENTS */
+/* TEMPLATES */
+/* PAGES */
+/*# sourceMappingURL=main.css.map */
